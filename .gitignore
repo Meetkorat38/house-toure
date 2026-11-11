@@ -1,0 +1,18 @@
+# dependencies / build output (Vercel installs and builds itself)
+node_modules/
+dist/
+
+# raw CC0 downloads (~170 MB); the web-ready set lives in public/assets
+assets-src/
+
+# reference material taken from third-party footage: not ours to publish
+reference/
+blender-handoff/
+blender-handoff.zip
+
+# local tooling
+.claude/
+.vercel/
+*.log
+.DS_Store
+Thumbs.db

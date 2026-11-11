@@ -1,0 +1,738 @@
+{
+  "name": "Modern Residence",
+  "units": "metres; x = east, z = south (backyard is north at z < 0)",
+  "spawn": {
+    "x": 18,
+    "z": 29,
+    "yaw": 0
+  },
+  "levels": [
+    {
+      "id": 0,
+      "name": "Ground",
+      "floor": 0,
+      "ceiling": 3.4,
+      "top": 3.8
+    },
+    {
+      "id": 1,
+      "name": "Upper",
+      "floor": 3.8,
+      "ceiling": 7,
+      "top": 7.35
+    }
+  ],
+  "rooms": [
+    {
+      "id": "family",
+      "name": "Family Room",
+      "level": 0,
+      "rect": [
+        0,
+        0,
+        9,
+        9
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "oakCeiling",
+      "ceilingStyle": "planks",
+      "linearLights": 3
+    },
+    {
+      "id": "great",
+      "name": "Great Room",
+      "level": 0,
+      "rect": [
+        9,
+        0,
+        20,
+        9
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling",
+      "lightSpacing": 2.7
+    },
+    {
+      "id": "kitchen",
+      "name": "Kitchen & Dining",
+      "level": 0,
+      "rect": [
+        20,
+        0,
+        28,
+        9
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling",
+      "lightSpacing": 2.4
+    },
+    {
+      "id": "media",
+      "name": "Media Lounge",
+      "level": 0,
+      "rect": [
+        28,
+        0,
+        36,
+        9
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "slats",
+      "wall": "walnutPanel",
+      "ceilingStyle": "slats"
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "level": 0,
+      "rect": [
+        0,
+        9,
+        14,
+        11.5
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling"
+    },
+    {
+      "id": "foyerLink",
+      "name": "Foyer",
+      "level": 0,
+      "rect": [
+        14,
+        9,
+        22,
+        11
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling"
+    },
+    {
+      "id": "foyer",
+      "name": "Foyer",
+      "level": 0,
+      "rect": [
+        14,
+        11,
+        22,
+        17
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "doubleHeight": true
+    },
+    {
+      "id": "stairHall",
+      "name": "Stair Hall",
+      "level": 0,
+      "rect": [
+        22,
+        9,
+        30,
+        15
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "doubleHeight": true,
+      "wall": "stoneWood"
+    },
+    {
+      "id": "bedroom",
+      "name": "Primary Bedroom",
+      "level": 1,
+      "rect": [
+        0,
+        0,
+        11,
+        9
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "woodGrey",
+      "lightSpacing": 2.8
+    },
+    {
+      "id": "terrace",
+      "name": "Roof Terrace",
+      "level": 1,
+      "rect": [
+        11,
+        0,
+        20,
+        9
+      ],
+      "kind": "outdoor",
+      "floor": "porcelain"
+    },
+    {
+      "id": "bath",
+      "name": "Primary Bath",
+      "level": 1,
+      "rect": [
+        0,
+        9,
+        7,
+        14
+      ],
+      "kind": "indoor",
+      "floor": "marbleWhite",
+      "ceiling": "ceiling"
+    },
+    {
+      "id": "closet",
+      "name": "Walk-in Closet",
+      "level": 1,
+      "rect": [
+        7,
+        11,
+        13,
+        14
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling",
+      "skylight": [
+        8.5,
+        11.8,
+        11.5,
+        13.2
+      ],
+      "downlights": false
+    },
+    {
+      "id": "corridor",
+      "name": "Upper Landing",
+      "level": 1,
+      "rect": [
+        7,
+        9,
+        22,
+        11
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling",
+      "lightSpacing": 2.4
+    },
+    {
+      "id": "landing",
+      "name": "Upper Landing",
+      "level": 1,
+      "rect": [
+        22,
+        9,
+        23.2,
+        11
+      ],
+      "kind": "indoor",
+      "floor": "oak",
+      "ceiling": "ceiling"
+    },
+    {
+      "id": "foyerVoid",
+      "name": "Foyer",
+      "level": 1,
+      "rect": [
+        14,
+        11,
+        22,
+        17
+      ],
+      "kind": "void",
+      "ceiling": "ceiling",
+      "skylight": [
+        16,
+        12.5,
+        20,
+        15.5
+      ]
+    },
+    {
+      "id": "stairVoidA",
+      "name": "Stair Hall",
+      "level": 1,
+      "rect": [
+        23.2,
+        9,
+        30,
+        15
+      ],
+      "kind": "void",
+      "ceiling": "ceiling",
+      "wall": "stoneWood"
+    },
+    {
+      "id": "stairVoidB",
+      "name": "Stair Hall",
+      "level": 1,
+      "rect": [
+        22,
+        11,
+        23.2,
+        15
+      ],
+      "kind": "void",
+      "ceiling": "ceiling"
+    }
+  ],
+  "openings": [
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 0.6,
+      "to": 6.2,
+      "type": "glass",
+      "note": "family room glazing"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 6.2,
+      "to": 8.4,
+      "type": "slider",
+      "park": "left",
+      "id": "familyDoor"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 9.4,
+      "to": 16.8,
+      "type": "glass",
+      "note": "great room sliding wall"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 16.8,
+      "to": 18.7,
+      "type": "slider",
+      "park": "left",
+      "id": "greatSlider"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 18.7,
+      "to": 19.6,
+      "type": "glass"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 20.6,
+      "to": 27.4,
+      "type": "glass"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 0,
+      "from": 28.6,
+      "to": 35.4,
+      "type": "glass",
+      "tint": "reeded"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 0,
+      "from": 1.5,
+      "to": 7.5,
+      "type": "clerestory"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 9,
+      "from": 2,
+      "to": 8,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 20,
+      "from": 0,
+      "to": 9,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 28,
+      "from": 6,
+      "to": 8.6,
+      "type": "door"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 9,
+      "from": 6.5,
+      "to": 8.5,
+      "type": "door"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 9,
+      "from": 9.5,
+      "to": 22,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 14,
+      "from": 9,
+      "to": 11.5,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 11,
+      "from": 14,
+      "to": 22,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "x",
+      "at": 22,
+      "from": 9,
+      "to": 15,
+      "type": "open"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 11.5,
+      "from": 1,
+      "to": 13,
+      "type": "window"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 17,
+      "from": 15,
+      "to": 17.2,
+      "type": "glass",
+      "note": "front entry"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 17,
+      "from": 17.2,
+      "to": 18.8,
+      "type": "slider",
+      "park": "right",
+      "id": "frontDoor"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 17,
+      "from": 18.8,
+      "to": 21,
+      "type": "glass"
+    },
+    {
+      "level": 0,
+      "axis": "z",
+      "at": 15,
+      "from": 23,
+      "to": 29.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 0,
+      "from": 0.3,
+      "to": 10.7,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 0,
+      "from": 2,
+      "to": 7,
+      "type": "window"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 11,
+      "from": 1,
+      "to": 3.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 11,
+      "from": 3.5,
+      "to": 5.3,
+      "type": "slider",
+      "park": "right",
+      "id": "bedroomTerraceDoor"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 11,
+      "from": 5.3,
+      "to": 8,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 9,
+      "from": 1.2,
+      "to": 2.4,
+      "type": "door"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 9,
+      "from": 8.6,
+      "to": 10,
+      "type": "door"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 9,
+      "from": 12.5,
+      "to": 14.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 9,
+      "from": 14.5,
+      "to": 16.5,
+      "type": "slider",
+      "park": "left",
+      "id": "landingTerraceDoor"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 9,
+      "from": 16.5,
+      "to": 17.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 7,
+      "from": 12,
+      "to": 13.2,
+      "type": "door"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 11,
+      "from": 9.4,
+      "to": 11,
+      "type": "door"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 22,
+      "from": 9,
+      "to": 11,
+      "type": "open"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 23.2,
+      "from": 9.2,
+      "to": 10.8,
+      "type": "open"
+    },
+    {
+      "level": 1,
+      "axis": "x",
+      "at": 0,
+      "from": 9.5,
+      "to": 13.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 14,
+      "from": 0.5,
+      "to": 6.5,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 17,
+      "from": 15,
+      "to": 21,
+      "type": "glass"
+    },
+    {
+      "level": 1,
+      "axis": "z",
+      "at": 15,
+      "from": 23,
+      "to": 29.5,
+      "type": "glass"
+    }
+  ],
+  "stairs": [
+    {
+      "id": "main",
+      "from": [
+        28.6,
+        10
+      ],
+      "to": [
+        23.2,
+        10
+      ],
+      "width": 1.6,
+      "y0": 0,
+      "y1": 3.8,
+      "risers": 21
+    }
+  ],
+  "props": [],
+  "exterior": {
+    "site": [
+      -6,
+      -34,
+      44,
+      36
+    ],
+    "terrace": [
+      0,
+      -5,
+      36,
+      0
+    ],
+    "pool": {
+      "center": [
+        24,
+        -19
+      ],
+      "r": 5
+    },
+    "spa": {
+      "center": [
+        30.65,
+        -18.4
+      ],
+      "size": [
+        2.5,
+        2.5
+      ],
+      "radius": 0.55
+    },
+    "deck": {
+      "r1": 7.75,
+      "r2": 9.6,
+      "ring2": [
+        40,
+        222
+      ],
+      "ring2Slabs": 10,
+      "spaMargin": 1.4
+    },
+    "pads": [
+      [
+        20.4,
+        -5.9,
+        0.22,
+        2.6
+      ],
+      [
+        21.1,
+        -7.05,
+        0.3,
+        2.4
+      ]
+    ],
+    "entryWalk": [
+      16.5,
+      17,
+      19.5,
+      34
+    ],
+    "entryBridge": [
+      15.5,
+      18.5,
+      20.5,
+      21,
+      3.3,
+      3.8
+    ],
+    "garage": [
+      23,
+      19,
+      31,
+      27,
+      3.6
+    ],
+    "pergola": {
+      "rect": [
+        11,
+        0,
+        20,
+        9
+      ],
+      "y": 6.7,
+      "spacing": 0.45
+    }
+  },
+  "settings": {
+    "upperFloor": true
+  },
+  "columns": [
+    {
+      "rect": [
+        19.2,
+        1.6,
+        0.75,
+        0.75
+      ]
+    },
+    {
+      "rect": [
+        20,
+        7.9,
+        0.7,
+        0.7
+      ]
+    }
+  ]
+}

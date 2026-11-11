@@ -1,0 +1,11 @@
+# normalise text to LF in the repo
+* text=auto eol=lf
+
+# binary assets: never touch line endings (.hdr starts with a text header and could be misdetected)
+*.hdr binary
+*.glb binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.woff2 binary

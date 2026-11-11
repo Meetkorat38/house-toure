@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#14161a" />
+    <meta name="color-scheme" content="dark" />
+    <title>Modern Residence · 3D Tour</title>
+    <meta name="description" content="Walk through a modern two-storey residence in 3D: oak, stone and glass across every room, the garden and the pool. Works in your browser on desktop and phone." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- icons -->
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Residence 3D" />
+
+    <!-- link previews (set VITE_SITE_URL in .env to the live domain so crawlers get absolute URLs) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Modern Residence" />
+    <meta property="og:title" content="Modern Residence · Interactive 3D Tour" />
+    <meta property="og:description" content="Walk every room of a modern two-storey residence in 3D, right in your browser." />
+    <meta property="og:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The residence at golden hour, seen from the pool deck" />
+    <meta property="og:url" content="%VITE_SITE_URL%/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Modern Residence · Interactive 3D Tour" />
+    <meta name="twitter:description" content="Walk every room of a modern two-storey residence in 3D, right in your browser." />
+    <meta name="twitter:image" content="%VITE_SITE_URL%/og-image.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <!-- fetch the sky lighting first: shader compilation waits on it, textures don't -->
+    <link rel="preload" href="/assets/hdri/kloppenheim_06_puresky.hdr" as="fetch" crossorigin="anonymous" />
+  </head>
+  <body>
+    <canvas id="scene"></canvas>
+
+    <div id="hud" class="hidden">
+      <button id="menu-btn" class="chip icon" aria-label="Menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+
+      <div id="room-label"></div>
+      <div id="caption"></div>
+
+      <div id="mood" role="group" aria-label="Lighting">
+        <button data-mood="day" aria-label="Day" title="Day">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span>Day</span>
+        </button>
+        <button data-mood="golden" class="on" aria-label="Golden hour" title="Golden hour">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17h18M6 17a6 6 0 0 1 12 0M12 5v3M4.6 9.6l2 1.4M19.4 9.6l-2 1.4M7 21h10"/></svg><span>Golden hour</span>
+        </button>
+        <button data-mood="evening" aria-label="Evening" title="Evening">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span>Evening</span>
+        </button>
+      </div>
+
+      <div id="placebar">
+        <button id="prev-btn" class="chip icon" aria-label="Previous room">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <label class="place">
+          <select id="place-select" aria-label="Go to a room"></select>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+        </label>
+        <button id="next-btn" class="chip icon" aria-label="Next room">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <button id="tour-btn" class="chip tour" aria-label="Play guided tour">
+          <svg class="play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg>
+          <svg class="pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>
+          <span>Tour</span>
+        </button>
+      </div>
+
+      <button id="map-btn" class="chip icon" aria-label="Show map" title="Map">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg>
+      </button>
+
+      <div id="map-wrap">
+        <canvas id="minimap"></canvas>
+        <div id="floor-label"></div>
+      </div>
+
+      <button id="gyro-btn" class="chip icon touch-only" aria-label="Look around by moving your phone" title="Look by moving your phone">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M3 9a9 9 0 0 0 0 6M21 9a9 9 0 0 1 0 6"/></svg>
+      </button>
+
+      <div id="joystick"><div id="knob"></div></div>
+      <div id="dpad" class="desktop-only" aria-label="Walk and turn">
+        <button data-dir="f" aria-label="Walk forward"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>
+        <button data-dir="l" aria-label="Turn left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <button data-dir="r" aria-label="Turn right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        <button data-dir="b" aria-label="Walk backward"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
+      </div>
+      <div id="crosshair"></div>
+      <div id="hint"></div>
+      <div id="toast"></div>
+      <div id="debug"></div>
+    </div>
+
+    <div id="intro" class="overlay">
+      <div class="card">
+        <p class="eyebrow">Interactive 3D tour</p>
+        <h1>Modern Residence</h1>
+        <p class="lede">Light, oak and stone across two floors. Walk every room at your own pace.</p>
+        <div id="loader"><div id="load-track"><div id="load-bar"></div></div><div id="load-label">Loading materials…</div></div>
+        <div class="actions">
+          <button id="start-btn" disabled>Enter the house</button>
+          <button id="start-tour-btn" class="ghost" disabled>Start guided tour</button>
+        </div>
+        <ul class="hints desktop-only">
+          <li><b>Move the mouse</b> to look · <b>click the floor</b> to walk there</li>
+          <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> or the on-screen arrows to walk · <kbd>Shift</kbd> faster · <kbd>Esc</kbd> frees the mouse</li>
+        </ul>
+        <ul class="hints touch-only">
+          <li><b>Tap the floor</b> to walk there · <b>drag</b> to look around</li>
+          <li>Use the joystick to walk freely</li>
+        </ul>
+        <label class="toggle desktop-only"><input type="checkbox" id="game-toggle" checked /> Game mode: mouse-look (toggle with <kbd>G</kbd>)</label>
+      </div>
+    </div>
+
+    <div id="fade"></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
